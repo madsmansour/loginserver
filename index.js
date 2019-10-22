@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
-const port = 45
-
-app.use(express.urlencoded);
+const port = 3000
+const path = require('path');
+const router = express.Router();
+app.use(express.urlencoded());
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
@@ -15,14 +16,14 @@ app.get('/login', function(req, res) { res.sendfile('html.html');
 
 app.use('/css', express.static('style'));
 
-app.post('/login',(req,res) => {
-    if (req.body.username == "Mads" && req.body.password == "123"){
-        res.send('Velkommen')
-    }
-    else {
-        res.send('Forkert login')
-    }
-});
+
+app.post('/login', (req, res) => {
+    if (req.body.userName =="Mads" && req.body.password =="123") {
+        res.send('Du er nu logget ind')
+} else {
+    res.send("skrid taber")
+}
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
